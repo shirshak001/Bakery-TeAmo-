@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Te Amo Bakery 🍰
 
-## Getting Started
+A modern, interactive bakery website built with Next.js 15 and TypeScript.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Modern Design**: Vibrant color scheme with professional styling
+- **Interactive Animations**: GSAP ScrollFloat text reveals and ClickSpark cursor effects
+- **Complete Menu System**: Product catalog with filtering and cart functionality
+- **Multi-page Experience**: Home, Menu, About, Contact, Blog, Order, and 404 pages
+- **Responsive Layout**: Mobile-first design that works on all devices
+- **Professional Navigation**: Strategic CTA button placement for optimal UX
+
+## 🚀 Tech Stack
+
+- **Next.js 15**: React framework with App Router
+- **TypeScript**: Type-safe JavaScript development
+- **GSAP**: High-performance animations and interactions
+- **CSS3**: Custom styling with modern features
+- **Lucide React**: Professional icon library
+
+## 🛠️ Getting Started
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/shirshak001/Bakery-TeAmo-.git
+   cd Bakery-TeAmo-
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 📁 Project Structure
+
+```
+te-amo-bakery/
+├── src/
+│   ├── app/          # Pages and layouts
+│   └── components/   # Reusable UI components
+├── public/           # Static assets
+└── ...config files
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Key Components
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **ScrollFloat**: Dynamic text reveal animations
+- **ClickSpark**: Interactive cursor effect on clicks
+- **SplitText**: Character-by-character text animations
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📱 Pages
 
-## Learn More
+- **Home**: Hero section with featured products and testimonials
+- **Menu**: Complete product catalog with filtering
+- **About**: Company story and team information
+- **Contact**: Business details and contact forms
+- **Blog**: Article listings and content
+- **Order**: Shopping cart and checkout functionality
 
-To learn more about Next.js, take a look at the following resources:
+## 🌐 Live Demo
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Visit the live website: *[Add your deployment URL here]*
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Made with ❤️ for Te Amo Bakery
