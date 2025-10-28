@@ -1,17 +1,19 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Allura:wght@400&display=swap');
 
 :root {
-  --primary: #FF6B9D;
-  --secondary: #FFF0F8;
-  --accent: #4ECDC4;
-  --accent-1: #FFE66D;
-  --accent-2: #FFB74D;
-  --accent-3: #A8E6CF;
-  --text-primary: #2D1B69;
-  --text-secondary: #6C5CE7;
-  --success: #81C784;
-  --warning: #FFB74D;
-  --danger: #E57373;
+  --primary: #C8A96A; /* Gold Crème */
+  --secondary: #F8F2E7; /* Ivory Cream */
+  --accent: #8B5E3C; /* Amber Roast */
+  --accent-1: #EBDAC3; /* Blush Beige */
+  --accent-2: #3B2A1A; /* Mocha Brown */
+  --accent-3: #C8A96A; /* Gold Crème */
+  --text-primary: #1E1A16; /* Charcoal Noir */
+  --text-secondary: #3B2A1A; /* Mocha Brown */
+  --success: #8B5E3C; /* Amber Roast */
+  --warning: #C8A96A; /* Gold Crème */
+  --danger: #3B2A1A; /* Mocha Brown */
+  --background: #F8F2E7; /* Ivory Cream */
+  --surface: #EBDAC3; /* Blush Beige */
 }
 
 * {
@@ -23,7 +25,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   color: var(--text-primary);
-  background-color: var(--secondary);
+  background-color: var(--background);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -93,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero {
   text-align: center;
   padding: 4rem 0;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent-1) 50%, var(--accent) 100%);
+  background: var(--surface);
   position: relative;
   overflow: hidden;
   min-height: 70vh;
@@ -108,9 +110,7 @@ h1, h2, h3, h4, h5, h6 {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at 30% 70%, rgba(252, 165, 165, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 70% 30%, rgba(191, 227, 180, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 20% 20%, rgba(255, 243, 176, 0.1) 0%, transparent 50%);
+  background: rgba(200, 169, 106, 0.1);
   animation: parallaxFloat 20s ease-in-out infinite;
   z-index: 1;
 }
@@ -315,9 +315,7 @@ h1, h2, h3, h4, h5, h6 {
   left: -10%;
   width: 120%;
   height: 120%;
-  background: radial-gradient(circle at 20% 80%, rgba(252, 165, 165, 0.03) 0%, transparent 40%),
-              radial-gradient(circle at 80% 20%, rgba(191, 227, 180, 0.03) 0%, transparent 40%),
-              radial-gradient(circle at 50% 50%, rgba(255, 243, 176, 0.02) 0%, transparent 50%);
+  background: rgba(200, 169, 106, 0.05);
   animation: sectionParallax 35s ease-in-out infinite;
   z-index: 1;
   pointer-events: none;
@@ -337,7 +335,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Freshness Section Special Effects */
 .freshness-section {
-  background: linear-gradient(135deg, var(--accent-3), var(--secondary));
+  background: var(--surface);
 }
 
 .section-title {
@@ -355,10 +353,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card {
-  background: linear-gradient(145deg, white, rgba(255, 240, 248, 0.8));
+  background: white;
   border-radius: 20px;
   padding: 1.5rem;
-  box-shadow: 0 8px 25px rgba(255, 107, 157, 0.15);
+  box-shadow: 0 8px 25px rgba(200, 169, 106, 0.15);
   transition: all 0.3s ease;
   position: relative;
   border: 2px solid transparent;
@@ -366,7 +364,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(255, 107, 157, 0.25);
+  box-shadow: 0 15px 40px rgba(200, 169, 106, 0.25);
   border-color: var(--primary);
 }
 
@@ -382,22 +380,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--accent-2));
+  background: var(--primary);
   color: white;
   border: none;
-  box-shadow: 0 4px 20px rgba(255, 107, 157, 0.4);
+  box-shadow: 0 4px 20px rgba(200, 169, 106, 0.4);
   font-weight: 600;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
-  background: linear-gradient(135deg, #FF4081, var(--primary));
+  box-shadow: 0 8px 25px rgba(200, 169, 106, 0.6);
+  background: var(--accent);
 }
 
 .footer {
-  background: linear-gradient(135deg, var(--text-primary) 0%, #2D3748 100%);
+  background: var(--accent-2);
   color: white;
   padding: 3rem 0 1rem;
   text-align: center;
@@ -412,8 +410,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 20% 80%, rgba(255, 107, 157, 0.1) 0%, transparent 40%),
-              radial-gradient(circle at 80% 20%, rgba(78, 205, 196, 0.08) 0%, transparent 35%);
+  background: rgba(139, 94, 60, 0.1);
   z-index: 1;
 }
 
@@ -461,7 +458,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Newsletter Section Styles */
 .newsletter-bg {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-1) 50%, var(--primary) 100%);
+  background: var(--primary);
   position: relative;
   overflow: hidden;
 }
@@ -473,9 +470,7 @@ h1, h2, h3, h4, h5, h6 {
   left: -20%;
   width: 140%;
   height: 140%;
-  background: radial-gradient(circle at 30% 70%, rgba(252, 165, 165, 0.15) 0%, transparent 35%),
-              radial-gradient(circle at 80% 30%, rgba(255, 243, 176, 0.12) 0%, transparent 30%),
-              radial-gradient(circle at 50% 90%, rgba(191, 227, 180, 0.1) 0%, transparent 25%);
+  background: rgba(248, 242, 231, 0.1);
   animation: newsletterParallax 16s ease-in-out infinite;
   z-index: 1;
 }
@@ -558,7 +553,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Freshness Promise Section */
 .freshness-section {
-  background: linear-gradient(135deg, var(--accent-2) 0%, #fff9e6 100%);
+  background: var(--surface);
 }
 
 .freshness-grid {
@@ -599,11 +594,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .testimonial-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
   padding: 2rem;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  border: 2px solid rgba(255, 107, 157, 0.3);
+  border: 2px solid rgba(200, 169, 106, 0.3);
   text-align: center;
   transition: all 0.3s ease;
   position: relative;
@@ -612,7 +607,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .testimonial-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 35px rgba(255, 107, 157, 0.3);
+  box-shadow: 0 12px 35px rgba(200, 169, 106, 0.3);
   border-color: var(--accent-color);
 }
 
@@ -655,7 +650,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Menu Page Styles */
 .menu-hero {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  background: var(--primary);
   padding: 4rem 0;
   text-align: center;
   color: white;
@@ -673,9 +668,7 @@ h1, h2, h3, h4, h5, h6 {
   left: -25%;
   width: 150%;
   height: 150%;
-  background: radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 30%),
-              radial-gradient(circle at 70% 30%, rgba(255, 243, 176, 0.15) 0%, transparent 25%),
-              radial-gradient(circle at 50% 50%, rgba(191, 227, 180, 0.08) 0%, transparent 40%);
+  background: rgba(248, 242, 231, 0.1);
   animation: menuParallax 18s ease-in-out infinite;
   z-index: 1;
 }
@@ -706,7 +699,7 @@ h1, h2, h3, h4, h5, h6 {
 .menu-filters {
   background: white;
   padding: 1.5rem 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(200, 169, 106, 0.2);
   position: sticky;
   top: 70px;
   z-index: 40;
@@ -725,7 +718,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 0.5rem;
   padding: 0.6rem 1.2rem;
-  border: 2px solid #e0e0e0;
+  border: 2px solid rgba(200, 169, 106, 0.3);
   background: white;
   color: var(--text-primary);
   border-radius: 25px;
@@ -759,7 +752,7 @@ h1, h2, h3, h4, h5, h6 {
 .filter-divider {
   width: 1px;
   height: 30px;
-  background: #e0e0e0;
+  background: rgba(200, 169, 106, 0.3);
   margin: 0 0.5rem;
 }
 
@@ -826,7 +819,7 @@ h1, h2, h3, h4, h5, h6 {
 /* About Page Styles */
 .about-hero {
   padding: 6rem 0 4rem;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, var(--accent-1) 100%);
+  background: var(--primary);
   position: relative;
   overflow: hidden;
   min-height: 70vh;
@@ -841,9 +834,7 @@ h1, h2, h3, h4, h5, h6 {
   left: -30%;
   width: 160%;
   height: 160%;
-  background: radial-gradient(circle at 25% 25%, rgba(252, 165, 165, 0.15) 0%, transparent 40%),
-              radial-gradient(circle at 75% 75%, rgba(255, 243, 176, 0.15) 0%, transparent 40%),
-              radial-gradient(circle at 50% 10%, rgba(191, 227, 180, 0.1) 0%, transparent 30%);
+  background: rgba(139, 94, 60, 0.1);
   animation: aboutParallax 25s ease-in-out infinite;
   z-index: 1;
 }
@@ -1112,7 +1103,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .about-cta {
   padding: 4rem 0;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent-1) 100%);
+  background: var(--primary);
   text-align: center;
 }
 
@@ -1172,7 +1163,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Contact Page Styles */
 .contact-hero {
   padding: 6rem 0 4rem;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 50%, var(--accent-1) 100%);
+  background: var(--accent);
   position: relative;
   overflow: hidden;
   min-height: 70vh;
@@ -1187,9 +1178,7 @@ h1, h2, h3, h4, h5, h6 {
   right: -40%;
   width: 180%;
   height: 180%;
-  background: radial-gradient(circle at 60% 40%, rgba(252, 165, 165, 0.12) 0%, transparent 35%),
-              radial-gradient(circle at 20% 80%, rgba(191, 227, 180, 0.12) 0%, transparent 35%),
-              radial-gradient(circle at 80% 20%, rgba(255, 243, 176, 0.08) 0%, transparent 25%);
+  background: rgba(200, 169, 106, 0.1);
   animation: contactParallax 30s ease-in-out infinite;
   z-index: 1;
 }
@@ -1482,20 +1471,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .instagram {
-  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  background: #e4405f;
 }
 
 .whatsapp {
-  background: linear-gradient(45deg, #25d366, #128c7e);
+  background: #25d366;
 }
 
 .facebook {
-  background: linear-gradient(45deg, #1877f2, #42a5f5);
+  background: #1877f2;
 }
 
 .contact-cta {
   padding: 4rem 0;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent-1) 100%);
+  background: var(--primary);
   text-align: center;
 }
 
@@ -1684,7 +1673,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Blog Page Styles */
 .blog-hero {
   padding: 6rem 0 4rem;
-  background: linear-gradient(135deg, var(--accent-1) 0%, var(--primary) 50%, var(--accent) 100%);
+  background: var(--accent-1);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -1700,9 +1689,7 @@ h1, h2, h3, h4, h5, h6 {
   left: -20%;
   width: 140%;
   height: 140%;
-  background: radial-gradient(circle at 40% 60%, rgba(255, 243, 176, 0.15) 0%, transparent 30%),
-              radial-gradient(circle at 80% 30%, rgba(252, 165, 165, 0.1) 0%, transparent 25%),
-              radial-gradient(circle at 10% 90%, rgba(191, 227, 180, 0.12) 0%, transparent 35%);
+  background: rgba(59, 42, 26, 0.1);
   animation: blogParallax 22s ease-in-out infinite;
   z-index: 1;
 }
@@ -1869,7 +1856,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .blog-newsletter {
   padding: 4rem 0;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent-1) 100%);
+  background: var(--primary);
   text-align: center;
 }
 
@@ -2139,7 +2126,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Order Page Styles */
 .order-hero {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  background: var(--accent);
   padding: 3rem 0;
   text-align: center;
   color: white;
@@ -2157,9 +2144,7 @@ h1, h2, h3, h4, h5, h6 {
   right: -30%;
   width: 160%;
   height: 160%;
-  background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 25%),
-              radial-gradient(circle at 20% 80%, rgba(252, 165, 165, 0.12) 0%, transparent 30%),
-              radial-gradient(circle at 60% 60%, rgba(255, 243, 176, 0.06) 0%, transparent 35%);
+  background: rgba(30, 26, 22, 0.1);
   animation: orderParallax 24s ease-in-out infinite;
   z-index: 1;
 }
@@ -2396,7 +2381,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .checkout-btn {
-  background: linear-gradient(135deg, var(--primary), #f0b3ba);
+  background: var(--primary);
   color: white;
   border: none;
   padding: 1rem;
@@ -2549,7 +2534,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .submit-order-btn {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  background: var(--accent);
   color: white;
   border: none;
   padding: 1.25rem 2rem;
