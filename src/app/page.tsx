@@ -13,7 +13,7 @@ import {
   Mail
 } from 'lucide-react';
 import SplitText from '../components/SplitText';
-import ScrollFloat from '../components/ScrollFloat';
+import SmoothScroll from '../components/SmoothScroll';
 import ClickSpark from '../components/ClickSpark';
 
 export default function Home() {
@@ -112,17 +112,23 @@ export default function Home() {
           extraScale={1.2}
         >
           <div className="container">
-            <div className="floating-element">
-              <h1 className="business-name">Te Amo </h1>
-              <SplitText 
-                text="Bite-sized Joy. Baked Fresh. Shared with Love."
-                tag="p"
-                className="hero-tagline"
-                delay={0.08}
-                duration={0.8}
-                splitType="words"
-              />
-            </div>
+            <SmoothScroll 
+              animationDuration={0.8}
+              fromDirection="fade"
+              delay={0.2}
+            >
+              <div>
+                <h1 className="business-name">Te Amo </h1>
+                <SplitText 
+                  text="Bite-sized Joy. Baked Fresh. Shared with Love."
+                  tag="p"
+                  className="hero-tagline"
+                  delay={0.08}
+                  duration={0.8}
+                  splitType="words"
+                />
+              </div>
+            </SmoothScroll>
           </div>
         </ClickSpark>
       </section>
@@ -130,15 +136,14 @@ export default function Home() {
       {/* Featured Products */}
       <section className="section">
         <div className="container">
-          <ScrollFloat 
-            containerClassName="section-title scroll-float-container"
-            textClassName="scroll-float-text"
-            animationDuration={1.2}
-            ease="back.out(1.7)"
-            stagger={0.05}
+          <SmoothScroll 
+            containerClassName="section-title"
+            animationDuration={0.8}
+            fromDirection="bottom"
+            distance={30}
           >
-            Featured Delights
-          </ScrollFloat>
+            <h2 className="section-title">Featured Delights</h2>
+          </SmoothScroll>
           <div className="grid">
             {featuredItems.map((item, index) => (
               <ClickSpark 
@@ -150,7 +155,13 @@ export default function Home() {
                 duration={500}
                 easing="ease-out"
               >
-                <div className={`card floating-element floating-delay-${index + 1}`}>
+                <SmoothScroll
+                  animationDuration={0.6}
+                  fromDirection="bottom"
+                  distance={30}
+                  delay={index * 0.1}
+                >
+                  <div className="card">
                   <div className="product-image">
                     <item.icon size={48} className="product-icon" />
                   </div>
@@ -164,7 +175,8 @@ export default function Home() {
                       {item.badge}
                     </span>
                   </div>
-                </div>
+                  </div>
+                </SmoothScroll>
               </ClickSpark>
             ))}
           </div>
@@ -174,37 +186,57 @@ export default function Home() {
       {/* Freshness Promise */}
       <section className="section freshness-section">
         <div className="container">
-          <ScrollFloat 
-            containerClassName="section-title scroll-float-container"
-            textClassName="scroll-float-text"
-            animationDuration={1.4}
-            ease="power3.out"
-            stagger={0.06}
+          <SmoothScroll 
+            containerClassName="section-title"
+            animationDuration={0.8}
+            fromDirection="bottom"
+            distance={30}
           >
-            Our Freshness Promise
-          </ScrollFloat>
+            <h2 className="section-title">Our Freshness Promise</h2>
+          </SmoothScroll>
           <div className="freshness-grid">
-            <div className="freshness-item floating-element floating-delay-1">
+            <SmoothScroll
+              animationDuration={0.6}
+              fromDirection="bottom"
+              distance={30}
+              delay={0}
+            >
+              <div className="freshness-item">
               <div className="freshness-icon">
                 <Sun size={48} className="freshness-icon-svg" />
               </div>
               <h3>Baked Daily</h3>
               <p>Every morning at 5 AM, our bakers start crafting your favorite treats with the finest ingredients.</p>
-            </div>
-            <div className="freshness-item floating-element floating-delay-2">
+              </div>
+            </SmoothScroll>
+            <SmoothScroll
+              animationDuration={0.6}
+              fromDirection="bottom"
+              distance={30}
+              delay={0.2}
+            >
+              <div className="freshness-item">
               <div className="freshness-icon">
                 <Award size={48} className="freshness-icon-svg" />
               </div>
               <h3>Premium Quality</h3>
               <p>We source only the best ingredients - organic flour, farm-fresh eggs, and real vanilla beans.</p>
-            </div>
-            <div className="freshness-item floating-element floating-delay-3">
-              <div className="freshness-icon">
-                <Heart size={48} className="freshness-icon-svg" />
               </div>
-              <h3>Made with Love</h3>
-              <p>Each treat is handcrafted with passion, ensuring every bite delivers joy to your day.</p>
-            </div>
+            </SmoothScroll>
+            <SmoothScroll
+              animationDuration={0.6}
+              fromDirection="bottom"
+              distance={30}
+              delay={0.4}
+            >
+              <div className="freshness-item">
+                <div className="freshness-icon">
+                  <Heart size={48} className="freshness-icon-svg" />
+                </div>
+                <h3>Made with Love</h3>
+                <p>Each treat is handcrafted with passion, ensuring every bite delivers joy to your day.</p>
+              </div>
+            </SmoothScroll>
           </div>
         </div>
       </section>
@@ -212,28 +244,35 @@ export default function Home() {
       {/* Testimonials */}
       <section className="section">
         <div className="container">
-          <ScrollFloat 
-            containerClassName="section-title scroll-float-container"
-            textClassName="scroll-float-text"
-            animationDuration={1.5}
-            ease="back.out(2)"
-            stagger={0.04}
+          <SmoothScroll 
+            containerClassName="section-title"
+            animationDuration={0.8}
+            fromDirection="bottom"
+            distance={30}
           >
-            Sweet Words from Sweet People
-          </ScrollFloat>
+            <h2 className="section-title">Sweet Words from Sweet People</h2>
+          </SmoothScroll>
           <div className="testimonials-grid">
             {testimonials.map((testimonial, index) => (
-              <div key={testimonial.id} className={`testimonial-card floating-element floating-delay-${index + 1}`}>
-                <div className="testimonial-stars">
-                  {Array.from({ length: 5 }, (_, starIndex) => (
-                    <Star key={starIndex} size={20} className="star" fill="currentColor" />
-                  ))}
+              <SmoothScroll
+                key={testimonial.id}
+                animationDuration={0.6}
+                fromDirection="bottom"
+                distance={30}
+                delay={index * 0.1}
+              >
+                <div className="testimonial-card">
+                  <div className="testimonial-stars">
+                    {Array.from({ length: 5 }, (_, starIndex) => (
+                      <Star key={starIndex} size={20} className="star" fill="currentColor" />
+                    ))}
+                  </div>
+                  <blockquote className="testimonial-quote">
+                    &ldquo;{testimonial.quote}&rdquo;
+                  </blockquote>
+                  <cite className="testimonial-author">— {testimonial.name}</cite>
                 </div>
-                <blockquote className="testimonial-quote">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </blockquote>
-                <cite className="testimonial-author">— {testimonial.name}</cite>
-              </div>
+              </SmoothScroll>
             ))}
           </div>
         </div>
@@ -242,20 +281,24 @@ export default function Home() {
       {/* Newsletter */}
       <section className="section newsletter-bg">
         <div className="container">
-          <div className="floating-element">
-            <ScrollFloat 
-              containerClassName="section-title scroll-float-container"
-              textClassName="scroll-float-text newsletter-text"
-              animationDuration={1.8}
-              ease="elastic.out(1, 0.3)"
-              stagger={0.02}
+          <SmoothScroll 
+            containerClassName="section-title"
+            animationDuration={0.8}
+            fromDirection="bottom"
+            distance={30}
+          >
+              <h2 className="section-title newsletter-text">Get a taste of our love — straight to your inbox</h2>
+            </SmoothScroll>
+            <SmoothScroll
+              animationDuration={0.6}
+              fromDirection="fade"
+              delay={0.3}
             >
-              Get a taste of our love — straight to your inbox
-            </ScrollFloat>
-            <div className="newsletter-icon-wrapper">
-              <Mail size={24} className="inline-icon newsletter-icon" />
-            </div>
-            <div className="newsletter-container">
+              <div>
+                <div className="newsletter-icon-wrapper">
+                  <Mail size={24} className="inline-icon newsletter-icon" />
+                </div>
+                <div className="newsletter-container">
               <p className="newsletter-description">
                 Join our sweet community and be the first to know about new treats, special offers, and baking secrets!
               </p>
@@ -287,8 +330,9 @@ export default function Home() {
                   <Sparkles size={24} className="inline-icon" /> Thank you for subscribing! Welcome to the Te Amo family!
                 </div>
               )}
-            </div>
-          </div>
+                </div>
+              </div>
+            </SmoothScroll>
         </div>
       </section>
 

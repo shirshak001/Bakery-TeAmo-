@@ -198,31 +198,29 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-/* ScrollFloat Animation Styles */
-.scroll-float-container {
-  overflow: hidden;
+/* Smooth Scroll Animation Styles */
+.smooth-scroll-wrapper {
+  will-change: transform, opacity;
+  transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
-.scroll-float-text {
+.smooth-scroll-wrapper h2 {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-}
-
-.word {
-  display: inline-block;
-  transform-origin: 50% 0%;
-  will-change: transform, opacity;
-}
-
-.scroll-float-wrapper {
-  margin: 1.25rem 0;
-  overflow: hidden;
-}
-
-.scroll-float-span {
-  display: inline-block;
   font-size: clamp(1.6rem, 4vw, 3rem);
   line-height: 1.5;
+  margin: 1.25rem 0;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Clean scrolling animation trigger styles */
+.smooth-scroll-wrapper {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ClickSpark Styles */
@@ -1202,21 +1200,19 @@ h1, h2, h3, h4, h5, h6 {
   will-change: transform;
 }
 
-.floating-element {
-  animation: gentleFloat 6s ease-in-out infinite;
+/* Smooth scroll wrapper styles */
+.smooth-scroll-wrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
 }
 
-.floating-delay-1 { animation-delay: 0s; }
-.floating-delay-2 { animation-delay: 0.2s; }
-.floating-delay-3 { animation-delay: 0.4s; }
-.floating-delay-4 { animation-delay: 0.6s; }
-.floating-delay-5 { animation-delay: 0.8s; }
-.floating-delay-6 { animation-delay: 1s; }
-
-@keyframes gentleFloat {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(1deg); }
+.smooth-scroll-wrapper.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
+
+/* Removed floating animations for cleaner experience */
 
 .parallax-bg {
   position: absolute;
@@ -1255,8 +1251,10 @@ h1, h2, h3, h4, h5, h6 {
     animation: none;
   }
   
-  .floating-element {
-    animation: none;
+  /* Simplified animations for mobile */
+  .smooth-scroll-wrapper {
+    opacity: 1;
+    transform: none;
   }
 }
 
