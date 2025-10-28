@@ -7,28 +7,6 @@ import ScrollFloat from '../../components/ScrollFloat';
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-pink-50">
-      {/* Navigation */}
-      <header className="header">
-        <div className="container">
-          <div className="nav">
-            <div className="logo">
-              <span className="business-name-nav">Te Amo Bakery</span>
-            </div>
-            <ul className="nav-links">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/menu">Menu</Link></li>
-              <li><Link href="/about" className="active">About</Link></li>
-              <li><Link href="/blog">Blog</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
-              <li><Link href="/order">Order</Link></li>
-            </ul>
-            <div className="nav-cta">
-              <Link href="/menu" className="btn btn-primary">Explore Our Menu</Link>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section className="about-hero">
         <div className="container">

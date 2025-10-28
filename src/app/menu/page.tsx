@@ -247,28 +247,6 @@ export default function MenuPage() {
 
   return (
     <div>
-      {/* Header */}
-      <header className="header">
-        <div className="container">
-          <div className="nav">
-            <div className="logo">
-              <Link href="/" className="business-name-link">Te Amo Bakery</Link>
-            </div>
-            <ul className="nav-links">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/menu" className="active">Menu</Link></li>
-              <li><Link href="/about">About</Link></li>
-              <li><Link href="/blog">Blog</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
-              <li><Link href="/order">Order</Link></li>
-            </ul>
-            <div className="nav-cta">
-              <Link href="/order" className="btn btn-primary">Order Now</Link>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Menu Hero */}
       <section className="menu-hero">
         <div className="container">

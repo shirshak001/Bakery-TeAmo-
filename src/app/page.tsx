@@ -78,28 +78,6 @@ export default function Home() {
 
   return (
     <div>
-      {/* Header */}
-      <header className="header">
-        <div className="container">
-          <div className="nav">
-            <div className="logo business-name-nav">
-              Te Amo 
-            </div>
-            <ul className="nav-links">
-              <li><a href="#home">Home</a></li>
-              <li><a href="/menu">Menu</a></li>
-              <li><a href="/about">About</a></li>
-              <li><a href="/blog">Blog</a></li>
-              <li><a href="/contact">Contact</a></li>
-              <li><a href="/order">Order</a></li>
-            </ul>
-            <div className="nav-cta">
-              <a href="/menu" className="btn btn-primary">Explore Our Menu</a>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section className="hero">
         <ClickSpark 
@@ -335,25 +313,6 @@ export default function Home() {
             </SmoothScroll>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-brand">
-            <h3 className="footer-title business-name">Te Amo </h3>
-            <p>Bite-sized Joy. Baked Fresh. Shared with Love.</p>
-          </div>
-          <div className="footer-nav">
-            <a href="/menu">Menu</a>
-            <a href="/order">Order</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-          </div>
-          <div className="footer-bottom">
-            <p>&copy; 2024 Te Amo . All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

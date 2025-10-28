@@ -146,25 +146,6 @@ export default function OrderPage() {
 
   return (
     <div>
-      {/* Header */}
-      <header className="header">
-        <div className="container">
-          <div className="nav">
-            <div className="logo">
-              <Link href="/" className="business-name-link">Te Amo Bakery</Link>
-            </div>
-            <ul className="nav-links">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/menu">Menu</Link></li>
-              <li><Link href="/about">About</Link></li>
-              <li><Link href="/blog">Blog</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
-              <li><Link href="/order" className="active">Order</Link></li>
-            </ul>
-          </div>
-        </div>
-      </header>
-
       {/* Order Hero */}
       <section className="order-hero">
         <div className="container">

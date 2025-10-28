@@ -28,25 +28,6 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-pink-50">
-      {/* Navigation */}
-      <header className="header">
-        <div className="container">
-          <div className="nav">
-            <div className="logo">
-              <span className="business-name-nav">Te Amo Bakery</span>
-            </div>
-            <ul className="nav-links">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/menu">Menu</Link></li>
-              <li><Link href="/about">About</Link></li>
-              <li><Link href="/blog">Blog</Link></li>
-              <li><Link href="/contact" className="active">Contact</Link></li>
-              <li><Link href="/order">Order</Link></li>
-            </ul>
-          </div>
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section className="contact-hero">
         <div className="container">
