@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
     <header className="header">
       <div className="container">
         <div className="nav">
-          <Link href="/" className="logo business-name-nav">
+          <Link href="/" className="logo business-name-nav" style={{ textDecoration: 'none' }}>
             Te Amo 
           </Link>
           <ul className="nav-links">

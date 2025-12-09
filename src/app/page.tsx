@@ -6,15 +6,64 @@ import {
   Cookie, 
   Croissant, 
   Sparkles,
-  Sun,
-  Award,
-  Heart,
   Star,
   Mail
 } from 'lucide-react';
 import SplitText from '../components/SplitText';
 import SmoothScroll from '../components/SmoothScroll';
 import ClickSpark from '../components/ClickSpark';
+import Masonry from '../components/Masonry';
+
+const masonryItems = [
+  {
+    id: "1",
+    img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&h=900",
+    url: "#",
+    height: 400,
+  },
+  {
+    id: "2",
+    img: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&h=750",
+    url: "#",
+    height: 250,
+  },
+  {
+    id: "3",
+    img: "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=600&h=800",
+    url: "#",
+    height: 600,
+  },
+  {
+    id: "4",
+    img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&h=700",
+    url: "#",
+    height: 350,
+  },
+  {
+    id: "5",
+    img: "https://images.unsplash.com/photo-1557925923-cd4648e211a0?w=600&h=850",
+    url: "#",
+    height: 450,
+  },
+  {
+    id: "6",
+    img: "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=600&h=750",
+    url: "#",
+    height: 300,
+  },
+  {
+    id: "7",
+    img: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&h=900",
+    url: "#",
+    height: 500,
+  },
+  {
+    id: "8",
+    img: "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=600&h=800",
+    url: "#",
+    height: 400,
+  },
+];
 
 export default function Home() {
   const [email, setEmail] = useState('');
@@ -166,55 +215,56 @@ export default function Home() {
         <div className="container">
           <SmoothScroll 
             containerClassName="section-title"
-            animationDuration={0.8}
-            fromDirection="bottom"
-            distance={30}
+            animationDuration={0.7}
+            fromDirection="top"
+            delay={0.2}
           >
-            <h2 className="section-title">Our Freshness Promise</h2>
+            <h2>Baked Fresh Daily</h2>
           </SmoothScroll>
-          <div className="freshness-grid">
-            <SmoothScroll
-              animationDuration={0.6}
-              fromDirection="bottom"
-              distance={30}
-              delay={0}
-            >
-              <div className="freshness-item">
-              <div className="freshness-icon">
-                <Sun size={48} className="freshness-icon-svg" />
-              </div>
-              <h3>Baked Daily</h3>
-              <p>Every morning at 5 AM, our bakers start crafting your favorite treats with the finest ingredients.</p>
-              </div>
-            </SmoothScroll>
-            <SmoothScroll
-              animationDuration={0.6}
-              fromDirection="bottom"
-              distance={30}
-              delay={0.2}
-            >
-              <div className="freshness-item">
-              <div className="freshness-icon">
-                <Award size={48} className="freshness-icon-svg" />
-              </div>
-              <h3>Premium Quality</h3>
-              <p>We source only the best ingredients - organic flour, farm-fresh eggs, and real vanilla beans.</p>
-              </div>
-            </SmoothScroll>
-            <SmoothScroll
-              animationDuration={0.6}
-              fromDirection="bottom"
-              distance={30}
-              delay={0.4}
-            >
-              <div className="freshness-item">
-                <div className="freshness-icon">
-                  <Heart size={48} className="freshness-icon-svg" />
-                </div>
-                <h3>Made with Love</h3>
-                <p>Each treat is handcrafted with passion, ensuring every bite delivers joy to your day.</p>
-              </div>
-            </SmoothScroll>
+          <SmoothScroll
+            animationDuration={0.7}
+            fromDirection="fade"
+            delay={0.4}
+          >
+            <p className="section-subtitle">
+              Every morning, we start from scratch to bring you the freshest, most delicious baked goods.
+            </p>
+          </SmoothScroll>
+        </div>
+      </section>
+
+      {/* Masonry Gallery Section */}
+      <section className="section masonry-section">
+        <div className="container">
+          <SmoothScroll 
+            containerClassName="section-title"
+            animationDuration={0.7}
+            fromDirection="top"
+            delay={0.2}
+          >
+            <h2>Our Creations</h2>
+          </SmoothScroll>
+          <SmoothScroll
+            animationDuration={0.7}
+            fromDirection="fade"
+            delay={0.4}
+          >
+            <p className="section-subtitle">
+              Discover the artistry behind every sweet creation
+            </p>
+          </SmoothScroll>
+          <div className="masonry-container">
+            <Masonry
+              items={masonryItems}
+              ease="power3.out"
+              duration={0.6}
+              stagger={0.05}
+              animateFrom="bottom"
+              scaleOnHover={true}
+              hoverScale={0.95}
+              blurToFocus={true}
+              colorShiftOnHover={false}
+            />
           </div>
         </div>
       </section>
