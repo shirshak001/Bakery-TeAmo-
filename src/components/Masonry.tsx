@@ -4,18 +4,24 @@ import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 're
 import { gsap } from 'gsap';
 
 const useMedia = (queries: string[], values: number[], defaultValue: number): number => {
-  const [value, setValue] = useState<number>(() => {
-    const index = queries.findIndex(q => matchMedia(q).matches);
-    return values[index] ?? defaultValue;
-  });
+  const [value, setValue] = useState<number>(defaultValue);
 
   useEffect(() => {
-    const handler = () => {
-      const index = queries.findIndex(q => matchMedia(q).matches);
-      setValue(values[index] ?? defaultValue);
+    // Only run on client side
+    if (typeof window === 'undefined') return;
+    
+    const getMatch = () => {
+      const index = queries.findIndex(q => window.matchMedia(q).matches);
+      return values[index] ?? defaultValue;
     };
-    queries.forEach(q => matchMedia(q).addEventListener('change', handler));
-    return () => queries.forEach(q => matchMedia(q).removeEventListener('change', handler));
+
+    // Set initial value
+    setValue(getMatch());
+
+    const handler = () => setValue(getMatch());
+    
+    queries.forEach(q => window.matchMedia(q).addEventListener('change', handler));
+    return () => queries.forEach(q => window.matchMedia(q).removeEventListener('change', handler));
   }, [queries, values, defaultValue]);
 
   return value;
@@ -124,6 +130,9 @@ const Masonry: React.FC<MasonryProps> = ({
   const getInitialPositionCallback = React.useCallback((item: GridItem) => {
     const containerRect = containerRef.current?.getBoundingClientRect();
     if (!containerRect) return { x: item.x, y: item.y };
+
+    // Check if window is available (client-side)
+    if (typeof window === 'undefined') return { x: item.x, y: item.y };
 
     let direction = animateFrom;
     if (animateFrom === 'random') {
