@@ -90,13 +90,13 @@ const Masonry: React.FC<MasonryProps> = ({
   stagger = 0.05,
   animateFrom = 'bottom',
   scaleOnHover = true,
-  hoverScale = 0.95,
+  hoverScale = 1.05,
   blurToFocus = true,
   colorShiftOnHover = false
 }) => {
   const columns = useMedia(
-    ['(min-width:1500px)', '(min-width:1000px)', '(min-width:600px)', '(min-width:400px)'],
-    [5, 4, 3, 2],
+    ['(min-width:1200px)', '(min-width:768px)', '(min-width:480px)'],
+    [4, 3, 2],
     1
   );
 
@@ -110,7 +110,7 @@ const Masonry: React.FC<MasonryProps> = ({
   const grid = useMemo<GridItem[]>(() => {
     if (!width) return [];
     const colHeights = new Array(columns).fill(0);
-    const gap = 16;
+    const gap = 20;
     const totalGaps = (columns - 1) * gap;
     const columnWidth = (width - totalGaps) / columns;
 
@@ -164,6 +164,20 @@ const Masonry: React.FC<MasonryProps> = ({
 
     grid.forEach((item, index) => {
       const selector = `[data-key="${item.id}"]`;
+      const element = document.querySelector(selector) as HTMLElement;
+      const innerElement = element?.querySelector('.masonry-item-inner') as HTMLElement;
+      
+      if (!element || !innerElement) return;
+
+      // Apply positioning and dimensions
+      element.style.left = `${item.x}px`;
+      element.style.top = `${item.y}px`;
+      element.style.width = `${item.w}px`;
+      element.style.height = `${item.h}px`;
+
+      // Apply background image
+      innerElement.style.backgroundImage = `url(${item.img})`;
+
       const animProps = { x: item.x, y: item.y, width: item.w, height: item.h };
 
       if (!hasMounted.current) {
@@ -200,70 +214,56 @@ const Masonry: React.FC<MasonryProps> = ({
     hasMounted.current = true;
   }, [grid, imagesReady, stagger, blurToFocus, duration, ease, getInitialPositionCallback]);
 
-  const handleMouseEnter = (id: string, element: HTMLElement) => {
+  const handleMouseEnter = (id: string) => {
     if (scaleOnHover) {
-      gsap.to(`[data-key="${id}"]`, {
+      gsap.to(`[data-key="${id}"] .masonry-item-inner`, {
         scale: hoverScale,
-        duration: 0.3,
+        duration: 0.4,
         ease: 'power2.out'
       });
     }
     if (colorShiftOnHover) {
-      const overlay = element.querySelector('.color-overlay') as HTMLElement;
-      if (overlay) gsap.to(overlay, { opacity: 0.3, duration: 0.3 });
+      gsap.to(`[data-key="${id}"] .color-overlay`, { 
+        opacity: 0.3, 
+        duration: 0.3 
+      });
     }
   };
 
-  const handleMouseLeave = (id: string, element: HTMLElement) => {
+  const handleMouseLeave = (id: string) => {
     if (scaleOnHover) {
-      gsap.to(`[data-key="${id}"]`, {
+      gsap.to(`[data-key="${id}"] .masonry-item-inner`, {
         scale: 1,
-        duration: 0.3,
+        duration: 0.4,
         ease: 'power2.out'
       });
     }
     if (colorShiftOnHover) {
-      const overlay = element.querySelector('.color-overlay') as HTMLElement;
-      if (overlay) gsap.to(overlay, { opacity: 0, duration: 0.3 });
+      gsap.to(`[data-key="${id}"] .color-overlay`, { 
+        opacity: 0, 
+        duration: 0.3 
+      });
     }
   };
 
   return (
-    <div ref={containerRef} className="relative w-full h-full">
-      {grid.map(item => {
-        const itemStyle = {
-          position: 'absolute' as const,
-          left: `${item.x}px`,
-          top: `${item.y}px`,
-          width: `${item.w}px`,
-          height: `${item.h}px`
-        };
-
-        const bgStyle = {
-          backgroundImage: `url(${item.img})`
-        };
-
-        return (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <div
-            key={item.id}
-            data-key={item.id}
-            className="masonry-item cursor-pointer box-content"
-            /* Dynamic positioning required for masonry layout */
-            style={itemStyle}
-            onClick={() => window.open(item.url, '_blank', 'noopener')}
-            onMouseEnter={e => handleMouseEnter(item.id, e.currentTarget)}
-            onMouseLeave={e => handleMouseLeave(item.id, e.currentTarget)}
-          >
-            {/* Dynamic background image required */}
-            <div className="masonry-item-inner" style={bgStyle}>
-              {colorShiftOnHover && (
-                <div className="color-overlay absolute inset-0 rounded-[10px] bg-gradient-to-tr from-pink-500/50 to-sky-500/50 opacity-0 pointer-events-none" />
-              )}
-            </div>
+    <div ref={containerRef} className="masonry-wrapper">
+      {grid.map(item => (
+        <div
+          key={item.id}
+          data-key={item.id}
+          className="masonry-item"
+          onClick={() => window.open(item.url, '_blank', 'noopener')}
+          onMouseEnter={() => handleMouseEnter(item.id)}
+          onMouseLeave={() => handleMouseLeave(item.id)}
+        >
+          <div className="masonry-item-inner">
+            {colorShiftOnHover && (
+              <div className="color-overlay" />
+            )}
           </div>
-        );
-      })}
+        </div>
+      ))}
     </div>
   );
 };
