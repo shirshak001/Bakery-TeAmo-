@@ -47,10 +47,10 @@ export default function AboutPage() {
         <div className="container">
           <div className="story-content">
             <div className="story-text">
-              <h2 className="section-title">The Te Amo Story</h2>
+              <h2 className="section-title">The Mielo Bakes Story</h2>
               <div className="story-paragraphs">
                 <p>
-                  &ldquo;Te Amo&rdquo; means &ldquo;I love you&rdquo; in Spanish, and that&apos;s exactly what we put into every single 
+                  &ldquo;Mielo&rdquo; means &ldquo;honey&rdquo; in Lithuanian, representing the sweet, natural goodness we put into every single 
                   item we bake. Our journey began in a small home kitchen, where our founder Maria discovered 
                   the joy of creating happiness through freshly baked goods.
                 </p>
@@ -61,7 +61,7 @@ export default function AboutPage() {
                   perfectly glazed pastries, and the promise of something truly special.
                 </p>
                 <p>
-                  Today, Te Amo Bakery continues to be a place where traditional recipes meet modern 
+                  Today, Mielo Bakes continues to be a place where traditional recipes meet modern 
                   creativity, where every customer becomes part of our extended family, and where every 
                   day brings new opportunities to spread joy, one delicious bite at a time.
                 </p>
@@ -156,7 +156,7 @@ export default function AboutPage() {
               <h3>Maria Rodriguez</h3>
               <p className="member-role">Founder & Head Baker</p>
               <p className="member-bio">
-                The heart and soul of Te Amo, Maria brings 25 years of baking passion 
+                The heart and soul of Mielo Bakes, Maria brings 25 years of baking passion 
                 and family recipes passed down through generations.
               </p>
             </div>
@@ -193,7 +193,7 @@ export default function AboutPage() {
         <div className="container">
           <div className="cta-content">
             <h2>Ready to Taste the Love?</h2>
-            <p>Visit us today and become part of the Te Amo family</p>
+            <p>Visit us today and become part of the Mielo Bakes family</p>
             <div className="cta-buttons">
               <Link href="/menu" className="btn btn-primary">
                 View Our Menu
@@ -211,7 +211,7 @@ export default function AboutPage() {
         <div className="container">
           <div className="footer-content">
             <div className="footer-section">
-              <h3 className="business-name">Te Amo Bakery</h3>
+              <h3 className="business-name">Mielo Bakes</h3>
               <p>Baking with love since 2010</p>
             </div>
             <div className="footer-section">
@@ -229,7 +229,7 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2025 Te Amo Bakery. Made with <Heart size={16} className="inline-icon" /> for our community.</p>
+            <p>&copy; 2025 Mielo Bakes. Made with <Heart size={16} className="inline-icon" /> for our community.</p>
           </div>
         </div>
       </footer>

@@ -32,7 +32,7 @@ const Navbar: React.FC = () => {
       <div className="container">
         <div className="nav">
           <Link href="/" className="logo business-name-nav" style={{ textDecoration: 'none' }}>
-            Te Amo 
+            Mielo Bakes 
           </Link>
           <ul className="nav-links">
             <li>

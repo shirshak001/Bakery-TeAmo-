@@ -147,7 +147,7 @@ export default function ContactPage() {
                   </div>
                   <div className="info-content">
                     <h3>Email</h3>
-                    <p>hello@teamobakery.com<br />orders@teamobakery.com</p>
+                    <p>hello@mielobakes.com<br />orders@mielobakes.com</p>
                   </div>
                 </div>
                 
@@ -190,7 +190,7 @@ export default function ContactPage() {
           <div className="social-links">
             <a href="#" className="social-bubble instagram">
               <Instagram size={30} />
-              <span>@teamobakery</span>
+              <span>@mielobakes</span>
             </a>
             
             <a href="#" className="social-bubble whatsapp">
@@ -200,7 +200,7 @@ export default function ContactPage() {
             
             <a href="#" className="social-bubble facebook">
               <Facebook size={30} />
-              <span className="business-name">Te Amo Bakery</span>
+              <span className="business-name">Mielo Bakes</span>
             </a>
           </div>
         </div>
@@ -229,7 +229,7 @@ export default function ContactPage() {
         <div className="container">
           <div className="footer-content">
             <div className="footer-section">
-              <h3 className="business-name">Te Amo Bakery</h3>
+              <h3 className="business-name">Mielo Bakes</h3>
               <p>Baking with love since 2010</p>
             </div>
             <div className="footer-section">
@@ -248,7 +248,7 @@ export default function ContactPage() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2025 Te Amo Bakery. Made with love for our community.</p>
+            <p>&copy; 2025 Mielo Bakes. Made with love for our community.</p>
           </div>
         </div>
       </footer>

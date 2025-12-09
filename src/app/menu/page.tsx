@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { 
   Cake, 
@@ -14,7 +14,6 @@ import {
   Star
 } from 'lucide-react';
 import ScrollFloat from '../../components/ScrollFloat';
-import ClickSpark from '../../components/ClickSpark';
 
 interface Product {
   id: number;
@@ -241,9 +240,20 @@ export default function MenuPage() {
   const handleEnquiry = (product: Product) => {
     // Open email client with pre-filled subject
     const subject = `Enquiry about ${product.name}`;
-    const body = `Hi Te Amo Bakery,\n\nI'm interested in ordering ${product.name}. Could you please provide more details?\n\nThank you!`;
+    const body = `Hi Mielo Bakes,\n\nI'm interested in ordering ${product.name}. Could you please provide more details?\n\nThank you!`;
     window.location.href = `mailto:orders@teamobakery.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
+
+  // Apply background colors via JavaScript to avoid inline styles
+  useEffect(() => {
+    const cardImages = document.querySelectorAll('.menu-card-image[data-bg]');
+    cardImages.forEach((element) => {
+      const bgColor = element.getAttribute('data-bg');
+      if (bgColor && element instanceof HTMLElement) {
+        element.style.backgroundColor = bgColor;
+      }
+    });
+  }, [filteredProducts]);
 
   return (
     <div>
@@ -305,60 +315,45 @@ export default function MenuPage() {
           </div>
           <div className="products-grid">
             {filteredProducts.map(product => (
-              <div key={product.id} className="product-card">
-                <div className={`product-image-bg bg-${product.id}`}>
-                  <div className="product-image-large">
-                    <product.icon size={80} className="product-icon" />
-                  </div>
+              <div key={product.id} className="menu-product-card">
+                <div className="menu-card-image" data-bg={product.background}>
+                  <product.icon size={72} className="menu-card-icon" />
                   {product.tags.includes('bestseller') && (
-                    <span className="bestseller-badge">🏆 Best Seller</span>
+                    <span className="menu-badge-tag"><Trophy size={14} /> Best Seller</span>
                   )}
                 </div>
-                <div className="product-info">
-                  <h3 className="product-name">{product.name}</h3>
-                  <p className="product-desc">{product.description}</p>
-                  <div className="product-tags">
-                    {product.tags.map(tag => {
+                <div className="menu-card-content">
+                  <h3 className="menu-card-title">{product.name}</h3>
+                  <p className="menu-card-description">{product.description}</p>
+                  
+                  <div className="menu-card-tags">
+                    {product.tags.filter(tag => tag !== 'bestseller').map(tag => {
                       const TagIcon = getTagIcon(tag);
                       return (
-                        <span key={tag} className={`tag tag-${tag}`}>
-                          <TagIcon size={12} className="inline-icon" />
-                          {tag.charAt(0).toUpperCase() + tag.slice(1).replace(/([A-Z])/g, ' $1')}
+                        <span key={tag} className={`menu-tag menu-tag-${tag}`}>
+                          <TagIcon size={12} />
+                          {tag === 'eggless' ? 'Eggless' : tag === 'glutenfree' ? 'Gluten-Free' : tag.charAt(0).toUpperCase() + tag.slice(1)}
                         </span>
                       );
                     })}
                   </div>
-                  <div className="product-footer">
-                    <span className="product-price-large">{product.price}</span>
-                    <div className="product-actions">
-                      <ClickSpark 
-                        sparkColor="#4ECDC4"
-                        sparkSize={6}
-                        sparkRadius={12}
-                        sparkCount={6}
-                        duration={350}
+
+                  <div className="menu-card-footer">
+                    <span className="menu-card-price">{product.price}</span>
+                    <div className="menu-card-actions">
+                      <button 
+                        className="menu-btn-primary"
+                        onClick={() => handleAddToCart(product)}
                       >
-                        <button 
-                          className="btn-cart"
-                          onClick={() => handleAddToCart(product)}
-                        >
-                          <ShoppingCart size={16} className="inline-icon" /> Add to Cart
-                        </button>
-                      </ClickSpark>
-                      <ClickSpark 
-                        sparkColor="#FFE66D"
-                        sparkSize={6}
-                        sparkRadius={12}
-                        sparkCount={6}
-                        duration={350}
+                        <ShoppingCart size={18} />
+                        Add to Cart
+                      </button>
+                      <button 
+                        className="menu-btn-secondary"
+                        onClick={() => handleEnquiry(product)}
                       >
-                        <button 
-                          className="btn-enquiry"
-                          onClick={() => handleEnquiry(product)}
-                        >
-                          💬 Enquiry
-                        </button>
-                      </ClickSpark>
+                        Enquiry
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -372,7 +367,7 @@ export default function MenuPage() {
       <footer className="footer">
         <div className="container">
           <div className="footer-brand">
-            <h3 className="footer-title business-name">Te Amo Bakery</h3>
+            <h3 className="footer-title business-name">Mielo Bakes</h3>
             <p>Bite-sized Joy. Baked Fresh. Shared with Love.</p>
           </div>
           <div className="footer-nav">
@@ -382,7 +377,7 @@ export default function MenuPage() {
             <a href="#contact">Contact</a>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2024 Te Amo Bakery. All rights reserved.</p>
+            <p>&copy; 2024 Mielo Bakes. All rights reserved.</p>
           </div>
         </div>
       </footer>

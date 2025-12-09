@@ -104,26 +104,47 @@ const Masonry: React.FC<MasonryProps> = ({
   const [imagesReady, setImagesReady] = useState(false);
 
   useEffect(() => {
-    preloadImages(items.map(i => i.img)).then(() => setImagesReady(true));
+    preloadImages(items.map(i => i.img)).then(() => {
+      setImagesReady(true);
+      console.log('Masonry: Images preloaded', items.length);
+    });
   }, [items]);
 
   const grid = useMemo<GridItem[]>(() => {
-    if (!width) return [];
+    if (!width) {
+      console.log('Masonry: No width yet');
+      return [];
+    }
     const colHeights = new Array(columns).fill(0);
     const gap = 20;
     const totalGaps = (columns - 1) * gap;
     const columnWidth = (width - totalGaps) / columns;
 
+    console.log('Masonry: Calculating grid', { width, columns, columnWidth });
+
     return items.map(child => {
       const col = colHeights.indexOf(Math.min(...colHeights));
       const x = col * (columnWidth + gap);
-      const height = child.height / 2;
+      const height = child.height;
       const y = colHeights[col];
 
       colHeights[col] += height + gap;
       return { ...child, x, y, w: columnWidth, h: height };
     });
   }, [columns, items, width]);
+
+  const containerHeight = useMemo(() => {
+    if (grid.length === 0) return 600;
+    const colHeights = new Array(columns).fill(0);
+    const gap = 20;
+    
+    grid.forEach(item => {
+      const col = Math.floor(item.x / ((width + gap) / columns));
+      colHeights[col] = Math.max(colHeights[col], item.y + item.h);
+    });
+    
+    return Math.max(...colHeights) + gap;
+  }, [grid, columns, width]);
 
   const hasMounted = useRef(false);
 
@@ -160,7 +181,13 @@ const Masonry: React.FC<MasonryProps> = ({
   }, [animateFrom, containerRef]);
 
   useLayoutEffect(() => {
-    if (!imagesReady) return;
+    if (!imagesReady || grid.length === 0) return;
+
+    const container = containerRef.current;
+    if (!container) return;
+
+    // Set container height first
+    container.style.height = `${containerHeight}px`;
 
     grid.forEach((item, index) => {
       const selector = `[data-key="${item.id}"]`;
@@ -169,32 +196,27 @@ const Masonry: React.FC<MasonryProps> = ({
       
       if (!element || !innerElement) return;
 
-      // Apply positioning and dimensions
-      element.style.left = `${item.x}px`;
-      element.style.top = `${item.y}px`;
-      element.style.width = `${item.w}px`;
-      element.style.height = `${item.h}px`;
-
       // Apply background image
       innerElement.style.backgroundImage = `url(${item.img})`;
 
-      const animProps = { x: item.x, y: item.y, width: item.w, height: item.h };
-
       if (!hasMounted.current) {
-        const start = getInitialPositionCallback(item);
+        // Initial animation from bottom
         gsap.fromTo(
-          selector,
+          element,
           {
             opacity: 0,
-            x: start.x,
-            y: start.y,
+            left: item.x,
+            top: item.y + 100,
             width: item.w,
             height: item.h,
             ...(blurToFocus && { filter: 'blur(10px)' })
           },
           {
             opacity: 1,
-            ...animProps,
+            left: item.x,
+            top: item.y,
+            width: item.w,
+            height: item.h,
             ...(blurToFocus && { filter: 'blur(0px)' }),
             duration: 0.8,
             ease: 'power3.out',
@@ -202,8 +224,12 @@ const Masonry: React.FC<MasonryProps> = ({
           }
         );
       } else {
-        gsap.to(selector, {
-          ...animProps,
+        // Update positioning on resize
+        gsap.to(element, {
+          left: item.x,
+          top: item.y,
+          width: item.w,
+          height: item.h,
           duration,
           ease,
           overwrite: 'auto'
@@ -212,7 +238,7 @@ const Masonry: React.FC<MasonryProps> = ({
     });
 
     hasMounted.current = true;
-  }, [grid, imagesReady, stagger, blurToFocus, duration, ease, getInitialPositionCallback]);
+  }, [grid, imagesReady, stagger, blurToFocus, duration, ease, containerHeight, containerRef]);
 
   const handleMouseEnter = (id: string) => {
     if (scaleOnHover) {
@@ -247,7 +273,10 @@ const Masonry: React.FC<MasonryProps> = ({
   };
 
   return (
-    <div ref={containerRef} className="masonry-wrapper">
+    <div 
+      ref={containerRef} 
+      className="masonry-wrapper"
+    >
       {grid.map(item => (
         <div
           key={item.id}

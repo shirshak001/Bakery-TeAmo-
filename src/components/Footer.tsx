@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
     <footer className="footer">
       <div className="container">
         <div className="footer-brand">
-          <h3 className="footer-title business-name">Te Amo </h3>
+          <h3 className="footer-title business-name">Mielo Bakes</h3>
           <p>Bite-sized Joy. Baked Fresh. Shared with Love.</p>
         </div>
         <div className="footer-nav">
@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
           <Link href="/contact">Contact</Link>
         </div>
         <div className="footer-bottom">
-          <p>&copy; 2024 Te Amo . All rights reserved.</p>
+          <p>&copy; 2024 Mielo Bakes. All rights reserved.</p>
         </div>
       </div>
     </footer>

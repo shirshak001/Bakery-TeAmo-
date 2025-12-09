@@ -476,7 +476,7 @@ export default function OrderPage() {
       <footer className="footer">
         <div className="container">
           <div className="footer-brand">
-            <h3 className="footer-title business-name">Te Amo Bakery</h3>
+            <h3 className="footer-title business-name">Mielo Bakes</h3>
             <p>Bite-sized Joy. Baked Fresh. Shared with Love.</p>
           </div>
           <div className="footer-nav">
@@ -486,7 +486,7 @@ export default function OrderPage() {
             <a href="#contact">Contact</a>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2024 Te Amo Bakery. All rights reserved.</p>
+            <p>&copy; 2024 Mielo Bakes. All rights reserved.</p>
           </div>
         </div>
       </footer>

@@ -20,7 +20,7 @@ export default function Home() {
       name: "Signature Chocolate Cupcakes",
       description: "Rich chocolate cake topped with silky buttercream frosting",
       price: "$4.50",
-      image: "🧁",
+      image: "",
       badge: "Bestseller"
     },
     {
@@ -36,7 +36,7 @@ export default function Home() {
       name: "Artisan Cookies",
       description: "Handcrafted cookies with premium chocolate chips", 
       price: "$2.75",
-      image: "🍪",
+      image: "",
       badge: "Handmade"
     }
   ];
@@ -48,7 +48,7 @@ export default function Home() {
         <div className="container">
           <div className="nav">
             <div className="logo">
-              Te Amo Bakery
+              Mielo Bakes
             </div>
             <ul className="nav-links">
               <li><a href="#home">Home</a></li>
@@ -63,7 +63,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero">
         <div className="container">
-          <h1>Te Amo Bakery</h1>
+          <h1>Mielo Bakes</h1>
           <p>Bite-sized Joy. Baked Fresh. Shared with Love.</p>
           <a href="#menu" className="btn btn-primary">Explore Our Menu</a>
         </div>
@@ -119,7 +119,7 @@ export default function Home() {
               </form>
             ) : (
               <div className="newsletter-success">
-                🎉 Thank you for subscribing! Welcome to the Te Amo family!
+                Thank you for subscribing! Welcome to the Mielo Bakes family!
               </div>
             )}
           </div>
@@ -130,7 +130,7 @@ export default function Home() {
       <footer className="footer">
         <div className="container">
           <div className="footer-brand">
-            <h3 className="footer-title">Te Amo Bakery</h3>
+            <h3 className="footer-title">Mielo Bakes</h3>
             <p>Bite-sized Joy. Baked Fresh. Shared with Love.</p>
           </div>
           <div className="footer-nav">
@@ -139,7 +139,7 @@ export default function Home() {
             <a href="#contact">Contact</a>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2024 Te Amo Bakery. All rights reserved.</p>
+            <p>&copy; 2024 Mielo Bakes. All rights reserved.</p>
           </div>
         </div>
       </footer>

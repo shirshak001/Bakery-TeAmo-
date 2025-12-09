@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import BackgroundMusic from "../components/BackgroundMusic";
+import { CartProvider } from "@/context/CartContext";
 
 export const metadata: Metadata = {
-  title: "Te Amo Bakery - Bite-sized Joy. Baked Fresh. Shared with Love.",
-  description: "Experience the sweetest treats at Te Amo Bakery. Fresh-baked cookies, cakes, and pastries made with love. Order online for pickup or delivery.",
-  keywords: "bakery, fresh baked goods, cookies, cakes, pastries, desserts, Te Amo Bakery",
+  title: "Mielo Bakes - Bite-sized Joy. Baked Fresh. Shared with Love.",
+  description: "Experience the sweetest treats at Mielo Bakes. Fresh-baked cookies, cakes, and pastries made with love. Order online for pickup or delivery.",
+  keywords: "bakery, fresh baked goods, cookies, cakes, pastries, desserts, Mielo Bakes",
 };
 
 export default function RootLayout({
@@ -17,9 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <Navbar />
-        {children}
-        <Footer />
+        <CartProvider>
+          <BackgroundMusic />
+          <Navbar />
+          {children}
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

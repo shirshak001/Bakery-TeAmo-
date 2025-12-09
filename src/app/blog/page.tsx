@@ -54,7 +54,7 @@ export default function BlogPage() {
       id: 4,
       title: "Behind the Scenes: A Day in Our Kitchen",
       excerpt: "Take a peek behind the curtain and see how we prepare hundreds of fresh items every single day.",
-      author: "Te Amo Team",
+      author: "Mielo Bakes Team",
       date: "October 5, 2025",
       readTime: "4 min read",
       category: "Behind the Scenes",
@@ -184,7 +184,7 @@ export default function BlogPage() {
         <div className="container">
           <div className="footer-content">
             <div className="footer-section">
-              <h3 className="business-name">Te Amo Bakery</h3>
+              <h3 className="business-name">Mielo Bakes</h3>
               <p>Baking with love since 2010</p>
             </div>
             <div className="footer-section">
@@ -204,7 +204,7 @@ export default function BlogPage() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2025 Te Amo Bakery. Made with love for our community.</p>
+            <p>&copy; 2025 Mielo Bakes. Made with love for our community.</p>
           </div>
         </div>
       </footer>
