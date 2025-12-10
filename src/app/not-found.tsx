@@ -69,9 +69,9 @@ export default function NotFound() {
                 <Heart size={16} />
                 Our Sweet Story
               </Link>
-              <Link href="/order" className="suggestion-link">
+              <Link href="/checkout" className="suggestion-link">
                 <Sparkles size={16} />
-                Order Online
+                View Your Cart
               </Link>
             </div>
           </div>

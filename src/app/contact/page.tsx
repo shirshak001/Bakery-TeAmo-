@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { MapPin, Phone, Mail, Clock, Send, Instagram, Facebook, MessageCircle, Truck } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, Truck } from 'lucide-react';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -179,33 +179,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Social Media Section */}
-      <section className="social-section">
-        <div className="container">
-          <h2 className="section-title text-center">Follow Our Sweet Journey</h2>
-          <p className="section-subtitle text-center">
-            Stay updated with our latest creations and behind-the-scenes moments
-          </p>
-          
-          <div className="social-links">
-            <a href="#" className="social-bubble instagram">
-              <Instagram size={30} />
-              <span>@mielobakes</span>
-            </a>
-            
-            <a href="#" className="social-bubble whatsapp">
-              <MessageCircle size={30} />
-              <span>WhatsApp Us</span>
-            </a>
-            
-            <a href="#" className="social-bubble facebook">
-              <Facebook size={30} />
-              <span className="business-name">Mielo Bakes</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="contact-cta">
         <div className="container">
@@ -216,42 +189,13 @@ export default function ContactPage() {
               <Link href="/menu" className="btn btn-primary">
                 View Menu
               </Link>
-              <Link href="/order" className="btn btn-secondary">
-                Order Now
+              <Link href="/checkout" className="btn btn-secondary">
+                View Cart
               </Link>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-content">
-            <div className="footer-section">
-              <h3 className="business-name">Mielo Bakes</h3>
-              <p>Baking with love since 2010</p>
-            </div>
-            <div className="footer-section">
-              <h4>Quick Links</h4>
-              <div className="footer-links">
-                <Link href="/">Home</Link>
-                <Link href="/menu">Menu</Link>
-                <Link href="/about">About</Link>
-                <Link href="/contact">Contact</Link>
-                <Link href="/order">Order</Link>
-              </div>
-            </div>
-            <div className="footer-section">
-              <h4>Contact</h4>
-              <p>123 Baker Street<br />Sweet City, SC 12345<br />(555) 123-CAKE</p>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <p>&copy; 2025 Mielo Bakes. Made with love for our community.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

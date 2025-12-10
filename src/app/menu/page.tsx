@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { 
   Cake, 
   Cookie, 
@@ -14,6 +15,8 @@ import {
   Star
 } from 'lucide-react';
 import ScrollFloat from '../../components/ScrollFloat';
+import { useCart } from '@/context/CartContext';
+import { products as mainProducts } from '@/data/products';
 
 interface Product {
   id: number;
@@ -29,6 +32,8 @@ interface Product {
 export default function MenuPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedFilter, setSelectedFilter] = useState('all');
+  const { addToCart } = useCart();
+  const router = useRouter();
 
   const categories = [
     { id: 'all', name: 'All Items', icon: Cake },
@@ -232,12 +237,47 @@ export default function MenuPage() {
     }
   };
 
-  const handleAddToCart = (product: Product) => {
-    // For now, just show an alert. In a real app, you'd add to cart state
-    alert(`Added ${product.name} to cart!`);
+  const handleAddToCart = (product: Product, event?: React.MouseEvent) => {
+    if (event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+    // Parse price - handle both $ and ₹ symbols
+    const priceString = product.price.replace(/[$₹,]/g, '').trim();
+    const priceNumber = parseFloat(priceString);
+    
+    if (isNaN(priceNumber)) {
+      console.error('Invalid price format:', product.price);
+      return;
+    }
+    
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: priceNumber,
+      quantity: 1,
+      image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&h=400&fit=crop'
+    });
   };
 
-  const handleEnquiry = (product: Product) => {
+  const handleProductClick = (product: Product) => {
+    // Check if this menu item corresponds to a main product with a detail page
+    // Match by name (case-insensitive partial match)
+    const matchingProduct = mainProducts.find(p => 
+      p.name.toLowerCase().includes(product.name.toLowerCase().split(' ')[0]) ||
+      product.name.toLowerCase().includes(p.name.toLowerCase().split(' ')[0])
+    );
+    
+    if (matchingProduct) {
+      router.push(`/products/${matchingProduct.slug}`);
+    }
+  };
+
+  const handleEnquiry = (product: Product, event?: React.MouseEvent) => {
+    if (event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
     // Open email client with pre-filled subject
     const subject = `Enquiry about ${product.name}`;
     const body = `Hi Mielo Bakes,\n\nI'm interested in ordering ${product.name}. Could you please provide more details?\n\nThank you!`;
@@ -275,47 +315,58 @@ export default function MenuPage() {
         </div>
       </section>
 
-      {/* Filters */}
-      <section className="menu-filters">
-        <div className="container">
-          <div className="simplified-filters">
-            {/* Category Filters */}
-            {categories.map(category => (
-              <button
-                key={category.id}
-                className={`filter-chip ${selectedCategory === category.id ? 'active' : ''}`}
-                onClick={() => setSelectedCategory(category.id)}
-              >
-                <category.icon size={20} className="chip-icon" />
-                {category.name}
-              </button>
-            ))}
-            
-            <div className="filter-divider"></div>
-            
-            {/* Special Filters */}
-            {filters.slice(1).map(filter => (
-              <button
-                key={filter.id}
-                className={`filter-chip special-chip ${selectedFilter === filter.id ? 'active' : ''}`}
-                onClick={() => setSelectedFilter(filter.id)}
-              >
-                {filter.name}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Products Grid */}
+      {/* Products Grid with Sidebar */}
       <section className="menu-products">
         <div className="container">
-          <div className="products-count">
-            Showing {filteredProducts.length} delicious items
-          </div>
-          <div className="products-grid">
+          <div className="menu-layout">
+            {/* Sidebar Filters */}
+            <aside className="menu-sidebar">
+              <div className="sidebar-section">
+                <h3 className="sidebar-title">Categories</h3>
+                <div className="sidebar-filters">
+                  {categories.map(category => (
+                    <button
+                      key={category.id}
+                      className={`sidebar-filter-btn ${selectedCategory === category.id ? 'active' : ''}`}
+                      onClick={() => setSelectedCategory(category.id)}
+                    >
+                      <category.icon size={18} />
+                      <span>{category.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="sidebar-divider"></div>
+
+              <div className="sidebar-section">
+                <h3 className="sidebar-title">Dietary Preferences</h3>
+                <div className="sidebar-filters">
+                  {filters.map(filter => (
+                    <button
+                      key={filter.id}
+                      className={`sidebar-filter-btn ${selectedFilter === filter.id ? 'active' : ''}`}
+                      onClick={() => setSelectedFilter(filter.id)}
+                    >
+                      <span>{filter.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </aside>
+
+            {/* Products Grid */}
+            <div className="menu-main-content">
+              <div className="products-count">
+                Showing {filteredProducts.length} delicious items
+              </div>
+              <div className="menu-products-grid">
             {filteredProducts.map(product => (
-              <div key={product.id} className="menu-product-card">
+              <div 
+                key={product.id} 
+                className="menu-product-card menu-product-card-clickable"
+                onClick={() => handleProductClick(product)}
+              >
                 <div className="menu-card-image" data-bg={product.background}>
                   <product.icon size={72} className="menu-card-icon" />
                   {product.tags.includes('bestseller') && (
@@ -343,14 +394,14 @@ export default function MenuPage() {
                     <div className="menu-card-actions">
                       <button 
                         className="menu-btn-primary"
-                        onClick={() => handleAddToCart(product)}
+                        onClick={(e) => handleAddToCart(product, e)}
                       >
                         <ShoppingCart size={18} />
                         Add to Cart
                       </button>
                       <button 
                         className="menu-btn-secondary"
-                        onClick={() => handleEnquiry(product)}
+                        onClick={(e) => handleEnquiry(product, e)}
                       >
                         Enquiry
                       </button>
@@ -359,28 +410,11 @@ export default function MenuPage() {
                 </div>
               </div>
             ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-brand">
-            <h3 className="footer-title business-name">Mielo Bakes</h3>
-            <p>Bite-sized Joy. Baked Fresh. Shared with Love.</p>
-          </div>
-          <div className="footer-nav">
-            <Link href="/">Home</Link>
-            <Link href="/menu">Menu</Link>
-            <Link href="/order">Order</Link>
-            <a href="#contact">Contact</a>
-          </div>
-          <div className="footer-bottom">
-            <p>&copy; 2024 Mielo Bakes. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

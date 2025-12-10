@@ -3,9 +3,13 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { ShoppingCart } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
+  const { getCartItemsCount } = useCart();
+  const cartCount = getCartItemsCount();
 
   const isActive = (path: string) => {
     if (path === '/') {
@@ -17,9 +21,9 @@ const Navbar: React.FC = () => {
   const getCtaButton = () => {
     switch (pathname) {
       case '/menu':
-        return { href: '/order', text: 'Order Now' };
-      case '/order':
-        return { href: '/menu', text: 'View Menu' };
+        return { href: '/checkout', text: 'View Cart' };
+      case '/checkout':
+        return { href: '/menu', text: 'Continue Shopping' };
       default:
         return { href: '/menu', text: 'Explore Our Menu' };
     }
@@ -75,16 +79,12 @@ const Navbar: React.FC = () => {
                 Contact
               </Link>
             </li>
-            <li>
-              <Link 
-                href="/order" 
-                className={isActive('/order') ? 'active' : ''}
-              >
-                Order
-              </Link>
-            </li>
           </ul>
           <div className="nav-cta">
+            <Link href="/checkout" className="nav-cart-icon">
+              <ShoppingCart size={24} />
+              {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+            </Link>
             <Link href={ctaButton.href} className="btn btn-primary">
               {ctaButton.text}
             </Link>
