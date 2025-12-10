@@ -173,7 +173,7 @@ export default function Home() {
           >
             <h2 className="section-title">Featured Delights</h2>
           </SmoothScroll>
-          <div className="grid">
+          <div className="products-grid">
             {featuredItems.map((item, index) => (
               <ClickSpark 
                 key={item.id}
@@ -193,7 +193,7 @@ export default function Home() {
                   <Link href={`/products/${item.slug}`} className="product-card-link">
                     <div className="product-card">
                       <div className="product-card-image">
-                        <Image src={item.image} alt={item.name} width={600} height={250} className="product-image" />
+                        <Image src={item.image} alt={item.name} width={400} height={280} className="product-image" />
                         <span className="product-badge-tag">{item.badge}</span>
                       </div>
                       <div className="product-card-content">
