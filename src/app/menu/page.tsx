@@ -29,26 +29,8 @@ interface Product {
 }
 
 export default function MenuPage() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedFilter, setSelectedFilter] = useState('all');
   const { addToCart } = useCart();
   const router = useRouter();
-
-  const categories = [
-    { id: 'all', name: 'All Items', icon: Cake },
-    { id: 'cakes', name: 'Cakes', icon: Cake },
-    { id: 'cookies', name: 'Cookies', icon: Cookie },
-    { id: 'breads', name: 'Breads', icon: Wheat },
-    { id: 'seasonal', name: 'Seasonal Specials', icon: Sparkles }
-  ];
-
-  const filters = [
-    { id: 'all', name: 'All' },
-    { id: 'bestseller', name: 'Best Sellers' },
-    { id: 'eggless', name: 'Eggless' },
-    { id: 'glutenfree', name: 'Gluten-Free' },
-    { id: 'vegan', name: 'Vegan' }
-  ];
 
   const products = [
     // Cakes
@@ -220,11 +202,7 @@ export default function MenuPage() {
     }
   ];
 
-  const filteredProducts = products.filter(product => {
-    const categoryMatch = selectedCategory === 'all' || product.category === selectedCategory;
-    const filterMatch = selectedFilter === 'all' || product.tags.includes(selectedFilter);
-    return categoryMatch && filterMatch;
-  });
+  const filteredProducts = products;
 
   const getTagIcon = (tag: string) => {
     switch(tag) {
@@ -234,6 +212,11 @@ export default function MenuPage() {
       case 'vegan': return Leaf;
       default: return Star;
     }
+  };
+
+  const handleProductClick = (product: Product) => {
+    const slug = product.name.toLowerCase().replace(/\s+/g, '-');
+    router.push(`/products/${slug}`);
   };
 
   const handleAddToCart = (product: Product, event?: React.MouseEvent) => {
@@ -269,18 +252,7 @@ export default function MenuPage() {
     addToCart(cartProduct);
   };
 
-  const handleProductClick = (product: Product) => {
-    // Check if this menu item corresponds to a main product with a detail page
-    // Match by name (case-insensitive partial match)
-    const matchingProduct = mainProducts.find(p => 
-      p.name.toLowerCase().includes(product.name.toLowerCase().split(' ')[0]) ||
-      product.name.toLowerCase().includes(p.name.toLowerCase().split(' ')[0])
-    );
-    
-    if (matchingProduct) {
-      router.push(`/products/${matchingProduct.slug}`);
-    }
-  };
+
 
   const handleEnquiry = (product: Product, event?: React.MouseEvent) => {
     if (event) {
@@ -324,57 +296,19 @@ export default function MenuPage() {
         </div>
       </section>
 
-      {/* Products Grid with Sidebar */}
+      {/* Products Grid */}
       <section className="menu-products">
         <div className="container">
-          <div className="menu-layout">
-            {/* Sidebar Filters */}
-            <aside className="menu-sidebar">
-              <div className="sidebar-section">
-                <h3 className="sidebar-title">Categories</h3>
-                <div className="sidebar-filters">
-                  {categories.map(category => (
-                    <button
-                      key={category.id}
-                      className={`sidebar-filter-btn ${selectedCategory === category.id ? 'active' : ''}`}
-                      onClick={() => setSelectedCategory(category.id)}
-                    >
-                      <category.icon size={18} />
-                      <span>{category.name}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="sidebar-divider"></div>
-
-              <div className="sidebar-section">
-                <h3 className="sidebar-title">Dietary Preferences</h3>
-                <div className="sidebar-filters">
-                  {filters.map(filter => (
-                    <button
-                      key={filter.id}
-                      className={`sidebar-filter-btn ${selectedFilter === filter.id ? 'active' : ''}`}
-                      onClick={() => setSelectedFilter(filter.id)}
-                    >
-                      <span>{filter.name}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </aside>
-
-            {/* Products Grid */}
-            <div className="menu-main-content">
-              <div className="products-count">
-                Showing {filteredProducts.length} delicious items
-              </div>
-              <div className="menu-products-grid">
+          <div className="products-count">
+            Showing {products.length} delicious items
+          </div>
+          <div className="menu-products-grid">
             {filteredProducts.map(product => (
               <div 
                 key={product.id} 
                 className="menu-product-card menu-product-card-clickable"
                 onClick={() => handleProductClick(product)}
+                style={{ cursor: 'pointer' }}
               >
                 <div className="menu-card-image" data-bg={product.background}>
                   <product.icon size={72} className="menu-card-icon" />
@@ -419,8 +353,6 @@ export default function MenuPage() {
                 </div>
               </div>
             ))}
-              </div>
-            </div>
           </div>
         </div>
       </section>
