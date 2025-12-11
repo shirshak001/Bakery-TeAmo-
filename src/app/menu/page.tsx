@@ -250,13 +250,23 @@ export default function MenuPage() {
       return;
     }
     
-    addToCart({
+    // Create a proper Product object that matches the cart's Product type
+    const cartProduct = {
       id: product.id,
       name: product.name,
+      slug: product.name.toLowerCase().replace(/\s+/g, '-'),
+      description: product.description,
+      longDescription: product.description,
       price: priceNumber,
-      quantity: 1,
-      image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&h=400&fit=crop'
-    });
+      image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&h=400&fit=crop',
+      images: ['https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&h=400&fit=crop'],
+      category: product.category,
+      ingredients: [],
+      allergens: [],
+      inStock: true
+    };
+    
+    addToCart(cartProduct);
   };
 
   const handleProductClick = (product: Product) => {

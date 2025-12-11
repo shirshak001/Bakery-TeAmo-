@@ -320,6 +320,64 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
 }
 
+/* Mobile Navigation Styles */
+@media (max-width: 968px) {
+  .header {
+    padding: 0.5rem 0;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+    padding: 0.75rem 0;
+    gap: 1rem;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    padding: 1rem 0 0.5rem;
+    background: white;
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--accent-1);
+  }
+
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+
+  .nav-cta {
+    margin-left: auto;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .nav-cta .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .nav-cart-icon {
+    padding: 0.4rem;
+  }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .hero-modern {
@@ -339,6 +397,21 @@ h1, h2, h3, h4, h5, h6 {
   .btn-hero {
     width: 100%;
     justify-content: center;
+  }
+
+  .logo {
+    font-size: 1.6rem;
+  }
+
+  .nav-cta .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .cart-badge {
+    font-size: 0.65rem;
+    min-width: 16px;
+    height: 16px;
   }
 }
 
