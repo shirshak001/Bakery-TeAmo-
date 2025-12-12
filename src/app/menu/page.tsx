@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { 
   Cake, 
@@ -15,7 +15,6 @@ import {
 } from 'lucide-react';
 import ScrollFloat from '../../components/ScrollFloat';
 import { useCart } from '@/context/CartContext';
-import { products as mainProducts } from '@/data/products';
 
 interface Product {
   id: number;
@@ -308,7 +307,6 @@ export default function MenuPage() {
                 key={product.id} 
                 className="menu-product-card menu-product-card-clickable"
                 onClick={() => handleProductClick(product)}
-                style={{ cursor: 'pointer' }}
               >
                 <div className="menu-card-image" data-bg={product.background}>
                   <product.icon size={72} className="menu-card-icon" />

@@ -150,10 +150,10 @@ const Masonry: React.FC<MasonryProps> = ({
 
   const getInitialPositionCallback = React.useCallback((item: GridItem) => {
     const containerRect = containerRef.current?.getBoundingClientRect();
-    if (!containerRect) return { x: item.x, y: item.y };
+    if (!containerRect) return { x: 0, y: 0 };
 
     // Check if window is available (client-side)
-    if (typeof window === 'undefined') return { x: item.x, y: item.y };
+    if (typeof window === 'undefined') return { x: 0, y: 0 };
 
     let direction = animateFrom;
     if (animateFrom === 'random') {
